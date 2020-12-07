@@ -4,9 +4,11 @@ function gettingJSON(){
 
     //Set default location if one isn't provided
     let location;
-    location = document.querySelector("#location").value;
-    if (location == "") {
-        location = "Ann Arbor";
+    if (document.querySelector("#location").value) {
+        location = document.querySelector("#location").value;
+    }
+    else {
+        location = "Ann Arbor, USA"
     }
     // Your code here.
     console.log("Location is : " + location);
@@ -15,15 +17,19 @@ function gettingJSON(){
     let format;
     // Your code here.
     format = document.querySelector("input[name=temp]:checked");
-    if (format.value == null) {
+    if (!format) {
+        //console.log("Format is " + format.value);
         format = "imperial";
+        console.log("Format is " + format);
     }
-    console.log("Format is " + format.value);
+    else {
+        console.log("Format is " + format.value); 
+    }
 
     //set the query  
     let query;
     // Your code here.  
-    query = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=0505b57b02b2704fe78431037b81302e";
+    query = "api.openweathermap.org/data/2.5/weather?q=" + location + "&appid=0505b57b02b2704fe78431037b81302e";
     //let api_key;
     //api_key = "0505b57b02b2704fe78431037b81302e";
     //console.log("Query is :" + query);
@@ -42,6 +48,6 @@ function gettingJSON(){
         //elements in HTML.  
         //I would print the JSON to the console
         // Your code here.
-        //console.log(JSON.stringify(json));
+        console.log(JSON.stringify(json));
     });
 }
